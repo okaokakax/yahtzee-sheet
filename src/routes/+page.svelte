@@ -1,3 +1,11 @@
+<script lang="ts">
+	import Dice from "../lib/Dice.svelte";
+	import DiceStore from "../stores/DiceStore.js"
+
+	// とりあえずサブスクライブしてるだけ。このストアを使い、役を判定するのはまた今度
+	$: console.log($DiceStore);
+</script>
+
 <div class="container-fluid">
 	<div class="row player-name-wrapper mt-4">
 		<h3>hoge さんの番です。サイコロを振り直し、結果を入力してください。</h3>
@@ -7,47 +15,7 @@
 			class="d-grid dice-container"
 			style="grid-template-columns: repeat(5, 1fr); column-gap: 2rem;"
 		>
-			<!-- @TODO 冗長なのでコンポーネント化したい -->
-			<select class="dice">
-				<option selected value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-			</select>
-			<select class="dice">
-				<option selected value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-			</select>
-			<select class="dice">
-				<option selected value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-			</select>
-			<select class="dice">
-				<option selected value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-			</select>
-			<select class="dice">
-				<option selected value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-			</select>
+			<Dice />
 		</div>
 	</div>
 	<div class="row result-table mt-4">
