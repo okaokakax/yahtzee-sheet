@@ -30,11 +30,14 @@
 	}
 
 	function detectHands(dices, tempHandsStore) {
+		// 後でストレート判定に使うのでソート
 		const sortedAllDices = Array.from(dices).sort((a, b) => {
 			return a - b;
 		});
+		// あとでヤッツィー判定に使うのでset作る
 		const dicesSet = new Set(Array.from(sortedAllDices).map((dice) => dice));
 
+		// どの出目が何個出たか
 		const diceFaceCountArray = [];
 		dicesSet.forEach((dice) => {
 			diceFaceCountArray[dice] = sortedAllDices.filter(
@@ -43,6 +46,7 @@
 		});
 
 		// nの目
+		// チャンス用の合計もここで計算してしまう
 		let sumOfAllDice = 0;
 		Object.keys(DICE_FACES).forEach(face => {
 			const sumOfDiceFace = calculateSumOfDiceFace(dices, DICE_FACES[face]);
@@ -52,8 +56,6 @@
 
 		// チャンス
 		tempHandsStore['CHANCE'].points = sumOfAllDice;
-
-		// ↑　これは毎回計算していい
 
 		// ヤッツィー
 		if (dicesSet.size === 1) {
@@ -75,6 +77,7 @@
 			tempHandsStore['FOUR_CARD'].points = sumOfAllDice;
 		}
 
+		// フルハウス
 		if (!tempHandsStore['FULL_HOUSE'].points) {
 			// 出目が3・2だったらフルハウス
 			if (calculateMin(diceFaceCountArray) === 2 && calculateMax(diceFaceCountArray) === 3) {
@@ -82,8 +85,8 @@
 			}
 		}
 
-		 // 大きいストレート
-		 if (!tempHandsStore['BIG_STRAIGHT'].points) {
+		// 大きいストレート
+		if (!tempHandsStore['BIG_STRAIGHT'].points) {
 			// 比較を最低1回に留めるために、forEachではなくsomeを使う。
 			BIG_STRAIGHT_PATTERNS.some((BIG_STRAIGHT_PATTERN) => {
 				if (JSON.stringify(BIG_STRAIGHT_PATTERN) === JSON.stringify(Array.from(dicesSet))) {
@@ -94,6 +97,8 @@
 				return false;
 			});
 		}
+
+		// 小さいストレート
 		if (!tempHandsStore['SMALL_STRAIGHT'].points) {
 			SMALL_STRAIGHT_PATTERNS.some((SMALL_STRAIGHT_PATTERN) => {
 				if (Array.from(dicesSet).join('').includes(SMALL_STRAIGHT_PATTERN.join(''))) {
@@ -103,6 +108,8 @@
 				return false;
 			});
 		}
+
+		// ストアの更新
 		$TempHandsStore = tempHandsStore;
 	}
 
@@ -135,6 +142,7 @@
 	};
 
 	$: {
+		// 一時手役をリセットしてから手役の判定を行う
 		resetAllTempHands()
 		detectHands($DiceStore, $TempHandsStore)
 	}
