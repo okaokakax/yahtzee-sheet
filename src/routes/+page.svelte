@@ -1,33 +1,33 @@
 <script>
-	import Dice from "../lib/Dice.svelte";
-	import DiceStore from "../stores/DiceStore.js"
-	import HandsStore from "../stores/HandsStore.js"
-	import TempHandsStore from "../stores/TempHandsStore.js"
+	import Dice from '../lib/Dice.svelte';
+	import DiceStore from '../stores/DiceStore.js';
+	import HandsStore from '../stores/HandsStore.js';
+	import TempHandsStore from '../stores/TempHandsStore.js';
 
 	const DICE_FACES = {
-		'ONE': 1,
-		'TWO': 2,
-		'THREE': 3,
-		'FOUR': 4,
-		'FIVE': 5,
-		'SIX': 6
+		ONE: 1,
+		TWO: 2,
+		THREE: 3,
+		FOUR: 4,
+		FIVE: 5,
+		SIX: 6
 	};
 	const BONUS_THRESHOLD = 63;
 	const BIG_STRAIGHT_PATTERNS = [
 		[1, 2, 3, 4, 5],
-		[2, 3, 4, 5, 6],
+		[2, 3, 4, 5, 6]
 	];
 	const SMALL_STRAIGHT_PATTERNS = [
 		[1, 2, 3, 4],
 		[2, 3, 4, 5],
-		[3, 4, 5, 6],
+		[3, 4, 5, 6]
 	];
 
 	let sumOfPoints = 0;
 	let toGetBonus = BONUS_THRESHOLD;
 
 	function resetAllTempHands() {
-		Object.keys($TempHandsStore).forEach(tempHand => {
+		Object.keys($TempHandsStore).forEach((tempHand) => {
 			$TempHandsStore[tempHand].points = 0;
 		});
 	}
@@ -44,14 +44,14 @@
 		const diceFaceCountArray = [];
 		dicesSet.forEach((dice) => {
 			diceFaceCountArray[dice] = sortedAllDices.filter(
-				sortedAllDice => sortedAllDice === dice
+				(sortedAllDice) => sortedAllDice === dice
 			).length;
 		});
 
 		// nの目
 		// チャンス用の合計もここで計算してしまう
 		let sumOfAllDice = 0;
-		Object.keys(DICE_FACES).forEach(face => {
+		Object.keys(DICE_FACES).forEach((face) => {
 			const sumOfDiceFace = calculateSumOfDiceFace(dices, DICE_FACES[face]);
 			tempHandsStore[face].points = sumOfDiceFace;
 			sumOfAllDice += sumOfDiceFace;
@@ -174,7 +174,7 @@
 			$HandsStore['BONUS'].recorded_points = 35;
 			$HandsStore['BONUS'].is_recorded = true;
 		}
-	}
+	};
 
 	/**
 	 * 1から6の目の合計を取得する
@@ -183,11 +183,11 @@
 	 */
 	const getOneToSixSum = () => {
 		let sum = 0;
-		Object.keys(DICE_FACES).forEach(face => {
+		Object.keys(DICE_FACES).forEach((face) => {
 			sum += $HandsStore[face].recorded_points;
 		});
 		return sum;
-	}
+	};
 
 	/**
 	 * ボーナスまでの点数を取得する
@@ -197,7 +197,7 @@
 	const getPointsToGetBonus = () => {
 		const oneToSixSum = getOneToSixSum();
 		return BONUS_THRESHOLD - oneToSixSum;
-	}
+	};
 
 	/**
 	 * すべての出目の合計を取得する
@@ -207,10 +207,12 @@
 	 * @returns {number} 出目の合計
 	 */
 	const getSumOfPoints = (HandsStore) => {
-		const sum = Object.keys(HandsStore).reduce((sum, hand) => sum + parseInt(HandsStore[hand].recorded_points || 0) , 0);
+		const sum = Object.keys(HandsStore).reduce(
+			(sum, hand) => sum + parseInt(HandsStore[hand].recorded_points || 0),
+			0
+		);
 		return sum;
-	}
-
+	};
 </script>
 
 <div class="container-fluid">
@@ -242,8 +244,16 @@
 						<span class="point-description">該当する目の合計</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.ONE.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('ONE')}">
-							{ $HandsStore.ONE.is_recorded ? $HandsStore.ONE.recorded_points : $TempHandsStore.ONE.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.ONE.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('ONE')}
+						>
+							{$HandsStore.ONE.is_recorded
+								? $HandsStore.ONE.recorded_points
+								: $TempHandsStore.ONE.points}
 						</a>
 					</td>
 					<!-- @TODO プレイヤー数に応じたカラム数の増減 -->
@@ -255,8 +265,16 @@
 						<span class="point-description">該当する目の合計</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.TWO.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('TWO')}">
-							{ $HandsStore.TWO.is_recorded ? $HandsStore.TWO.recorded_points : $TempHandsStore.TWO.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.TWO.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('TWO')}
+						>
+							{$HandsStore.TWO.is_recorded
+								? $HandsStore.TWO.recorded_points
+								: $TempHandsStore.TWO.points}
 						</a>
 					</td>
 				</tr>
@@ -267,8 +285,16 @@
 						<span class="point-description">該当する目の合計</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.THREE.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('THREE')}">
-							{ $HandsStore.THREE.is_recorded ? $HandsStore.THREE.recorded_points : $TempHandsStore.THREE.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.THREE.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('THREE')}
+						>
+							{$HandsStore.THREE.is_recorded
+								? $HandsStore.THREE.recorded_points
+								: $TempHandsStore.THREE.points}
 						</a>
 					</td>
 				</tr>
@@ -279,8 +305,16 @@
 						<span class="point-description">該当する目の合計</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.FOUR.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('FOUR')}">
-							{ $HandsStore.FOUR.is_recorded ? $HandsStore.FOUR.recorded_points : $TempHandsStore.FOUR.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.FOUR.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('FOUR')}
+						>
+							{$HandsStore.FOUR.is_recorded
+								? $HandsStore.FOUR.recorded_points
+								: $TempHandsStore.FOUR.points}
 						</a>
 					</td>
 				</tr>
@@ -291,8 +325,16 @@
 						<span class="point-description">該当する目の合計</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.FIVE.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('FIVE')}">
-							{ $HandsStore.FIVE.is_recorded ? $HandsStore.FIVE.recorded_points : $TempHandsStore.FIVE.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.FIVE.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('FIVE')}
+						>
+							{$HandsStore.FIVE.is_recorded
+								? $HandsStore.FIVE.recorded_points
+								: $TempHandsStore.FIVE.points}
 						</a>
 					</td>
 				</tr>
@@ -303,8 +345,16 @@
 						<span class="point-description">該当する目の合計</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.SIX.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('SIX')}">
-							{ $HandsStore.SIX.is_recorded ? $HandsStore.SIX.recorded_points : $TempHandsStore.SIX.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.SIX.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('SIX')}
+						>
+							{$HandsStore.SIX.is_recorded
+								? $HandsStore.SIX.recorded_points
+								: $TempHandsStore.SIX.points}
 						</a>
 					</td>
 				</tr>
@@ -316,12 +366,18 @@
 					</th>
 					<td class="point-cell">
 						{#if $HandsStore.BONUS.is_recorded}
-							<a class="point-cell-event-handler 'recorded' point-cell-event-handler--not-clickable" href="#/">
-								{ $HandsStore.BONUS.recorded_points }
+							<a
+								class="point-cell-event-handler 'recorded' point-cell-event-handler--not-clickable"
+								href="#"
+							>
+								{$HandsStore.BONUS.recorded_points}
 							</a>
 						{:else}
-							<a class="point-cell-event-handler 'not-recorded point-cell-event-handler--not-clickable" href="#/">
-								ボーナスまであと{ toGetBonus }点
+							<a
+								class="point-cell-event-handler 'not-recorded point-cell-event-handler--not-clickable"
+								href="#"
+							>
+								ボーナスまであと{toGetBonus}点
 							</a>
 						{/if}
 					</td>
@@ -334,8 +390,16 @@
 						<span class="point-description">出目の合計</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.THREE_CARD.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('THREE_CARD')}">
-							{ $HandsStore.THREE_CARD.is_recorded ? $HandsStore.THREE_CARD.recorded_points : $TempHandsStore.THREE_CARD.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.THREE_CARD.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('THREE_CARD')}
+						>
+							{$HandsStore.THREE_CARD.is_recorded
+								? $HandsStore.THREE_CARD.recorded_points
+								: $TempHandsStore.THREE_CARD.points}
 						</a>
 					</td>
 				</tr>
@@ -346,8 +410,16 @@
 						<span class="point-description">出目の合計</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.FOUR_CARD.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('FOUR_CARD')}">
-							{ $HandsStore.FOUR_CARD.is_recorded ? $HandsStore.FOUR_CARD.recorded_points : $TempHandsStore.FOUR_CARD.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.FOUR_CARD.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('FOUR_CARD')}
+						>
+							{$HandsStore.FOUR_CARD.is_recorded
+								? $HandsStore.FOUR_CARD.recorded_points
+								: $TempHandsStore.FOUR_CARD.points}
 						</a>
 					</td>
 				</tr>
@@ -358,8 +430,16 @@
 						<span class="point-description">25点</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.FULL_HOUSE.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('FULL_HOUSE')}">
-							{ $HandsStore.FULL_HOUSE.is_recorded ? $HandsStore.FULL_HOUSE.recorded_points : $TempHandsStore.FULL_HOUSE.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.FULL_HOUSE.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('FULL_HOUSE')}
+						>
+							{$HandsStore.FULL_HOUSE.is_recorded
+								? $HandsStore.FULL_HOUSE.recorded_points
+								: $TempHandsStore.FULL_HOUSE.points}
 						</a>
 					</td>
 				</tr>
@@ -370,8 +450,16 @@
 						<span class="point-description">30点</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.SMALL_STRAIGHT.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('SMALL_STRAIGHT')}">
-							{ $HandsStore.SMALL_STRAIGHT.is_recorded ? $HandsStore.SMALL_STRAIGHT.recorded_points : $TempHandsStore.SMALL_STRAIGHT.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.SMALL_STRAIGHT.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('SMALL_STRAIGHT')}
+						>
+							{$HandsStore.SMALL_STRAIGHT.is_recorded
+								? $HandsStore.SMALL_STRAIGHT.recorded_points
+								: $TempHandsStore.SMALL_STRAIGHT.points}
 						</a>
 					</td>
 				</tr>
@@ -382,8 +470,16 @@
 						<span class="point-description">40点</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.BIG_STRAIGHT.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('BIG_STRAIGHT')}">
-							{ $HandsStore.BIG_STRAIGHT.is_recorded ? $HandsStore.BIG_STRAIGHT.recorded_points : $TempHandsStore.BIG_STRAIGHT.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.BIG_STRAIGHT.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('BIG_STRAIGHT')}
+						>
+							{$HandsStore.BIG_STRAIGHT.is_recorded
+								? $HandsStore.BIG_STRAIGHT.recorded_points
+								: $TempHandsStore.BIG_STRAIGHT.points}
 						</a>
 					</td>
 				</tr>
@@ -394,8 +490,16 @@
 						<span class="point-description">50点</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.YAHTZEE.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('YAHTZEE')}">
-							{ $HandsStore.YAHTZEE.is_recorded ? $HandsStore.YAHTZEE.recorded_points : $TempHandsStore.YAHTZEE.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.YAHTZEE.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('YAHTZEE')}
+						>
+							{$HandsStore.YAHTZEE.is_recorded
+								? $HandsStore.YAHTZEE.recorded_points
+								: $TempHandsStore.YAHTZEE.points}
 						</a>
 					</td>
 				</tr>
@@ -406,8 +510,16 @@
 						<span class="point-description">サイコロの目の合計</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler {$HandsStore.CHANCE.is_recorded ? 'recorded' : 'not-recorded'}" href="#/" on:click="{() => recordPoints('CHANCE')}">
-							{ $HandsStore.CHANCE.is_recorded ? $HandsStore.CHANCE.recorded_points : $TempHandsStore.CHANCE.points }
+						<a
+							class="point-cell-event-handler {$HandsStore.CHANCE.is_recorded
+								? 'recorded'
+								: 'not-recorded'}"
+							href="#"
+							on:click={() => recordPoints('CHANCE')}
+						>
+							{$HandsStore.CHANCE.is_recorded
+								? $HandsStore.CHANCE.recorded_points
+								: $TempHandsStore.CHANCE.points}
 						</a>
 					</td>
 				</tr>
@@ -416,8 +528,8 @@
 						<span class="point-title">合計点</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler point-cell-event-handler--not-clickable" href="#/">
-							{ sumOfPoints }
+						<a class="point-cell-event-handler point-cell-event-handler--not-clickable" href="#">
+							{sumOfPoints}
 						</a>
 					</td>
 				</tr>
@@ -425,6 +537,7 @@
 		</table>
 	</div>
 </div>
+#
 
 <style lang="scss">
 	.point-row {
