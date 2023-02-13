@@ -779,7 +779,6 @@ function create_fragment(ctx) {
   let td14;
   let a13;
   let t106;
-  let t107;
   let current;
   let mounted;
   let dispose;
@@ -1022,7 +1021,6 @@ function create_fragment(ctx) {
         /*sumOfPoints*/
         ctx[2]
       );
-      t107 = text("\n#");
       this.h();
     },
     l(nodes) {
@@ -1451,7 +1449,6 @@ function create_fragment(ctx) {
       table_nodes.forEach(detach);
       div3_nodes.forEach(detach);
       div4_nodes.forEach(detach);
-      t107 = claim_text(nodes, "\n#");
       this.h();
     },
     h() {
@@ -1807,7 +1804,6 @@ function create_fragment(ctx) {
       append_hydration(tr16, td14);
       append_hydration(td14, a13);
       append_hydration(a13, t106);
-      insert_hydration(target, t107, anchor);
       current = true;
       if (!mounted) {
         dispose = [
@@ -2122,8 +2118,6 @@ function create_fragment(ctx) {
         detach(div4);
       destroy_component(dice);
       if_block.d();
-      if (detaching)
-        detach(t107);
       mounted = false;
       run_all(dispose);
     }
