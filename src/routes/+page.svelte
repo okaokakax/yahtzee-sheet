@@ -248,7 +248,7 @@
 							class="point-cell-event-handler {$HandsStore.ONE.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('ONE')}
 						>
 							{$HandsStore.ONE.is_recorded
@@ -269,7 +269,7 @@
 							class="point-cell-event-handler {$HandsStore.TWO.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('TWO')}
 						>
 							{$HandsStore.TWO.is_recorded
@@ -289,7 +289,7 @@
 							class="point-cell-event-handler {$HandsStore.THREE.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('THREE')}
 						>
 							{$HandsStore.THREE.is_recorded
@@ -309,7 +309,7 @@
 							class="point-cell-event-handler {$HandsStore.FOUR.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('FOUR')}
 						>
 							{$HandsStore.FOUR.is_recorded
@@ -329,7 +329,7 @@
 							class="point-cell-event-handler {$HandsStore.FIVE.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('FIVE')}
 						>
 							{$HandsStore.FIVE.is_recorded
@@ -349,7 +349,7 @@
 							class="point-cell-event-handler {$HandsStore.SIX.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('SIX')}
 						>
 							{$HandsStore.SIX.is_recorded
@@ -368,14 +368,14 @@
 						{#if $HandsStore.BONUS.is_recorded}
 							<a
 								class="point-cell-event-handler 'recorded' point-cell-event-handler--not-clickable"
-								href="#"
+								href={"#"}
 							>
 								{$HandsStore.BONUS.recorded_points}
 							</a>
 						{:else}
 							<a
 								class="point-cell-event-handler 'not-recorded point-cell-event-handler--not-clickable"
-								href="#"
+								href={"#"}
 							>
 								ボーナスまであと{toGetBonus}点
 							</a>
@@ -394,7 +394,7 @@
 							class="point-cell-event-handler {$HandsStore.THREE_CARD.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('THREE_CARD')}
 						>
 							{$HandsStore.THREE_CARD.is_recorded
@@ -414,7 +414,7 @@
 							class="point-cell-event-handler {$HandsStore.FOUR_CARD.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('FOUR_CARD')}
 						>
 							{$HandsStore.FOUR_CARD.is_recorded
@@ -434,7 +434,7 @@
 							class="point-cell-event-handler {$HandsStore.FULL_HOUSE.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('FULL_HOUSE')}
 						>
 							{$HandsStore.FULL_HOUSE.is_recorded
@@ -454,7 +454,7 @@
 							class="point-cell-event-handler {$HandsStore.SMALL_STRAIGHT.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('SMALL_STRAIGHT')}
 						>
 							{$HandsStore.SMALL_STRAIGHT.is_recorded
@@ -474,7 +474,7 @@
 							class="point-cell-event-handler {$HandsStore.BIG_STRAIGHT.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('BIG_STRAIGHT')}
 						>
 							{$HandsStore.BIG_STRAIGHT.is_recorded
@@ -494,7 +494,7 @@
 							class="point-cell-event-handler {$HandsStore.YAHTZEE.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('YAHTZEE')}
 						>
 							{$HandsStore.YAHTZEE.is_recorded
@@ -514,7 +514,7 @@
 							class="point-cell-event-handler {$HandsStore.CHANCE.is_recorded
 								? 'recorded'
 								: 'not-recorded'}"
-							href="#"
+							href={"#"}
 							on:click={() => recordPoints('CHANCE')}
 						>
 							{$HandsStore.CHANCE.is_recorded
@@ -528,7 +528,7 @@
 						<span class="point-title">合計点</span>
 					</th>
 					<td class="point-cell">
-						<a class="point-cell-event-handler point-cell-event-handler--not-clickable" href="#">
+						<a class="point-cell-event-handler point-cell-event-handler--not-clickable" href={"#"}>
 							{sumOfPoints}
 						</a>
 					</td>
@@ -537,7 +537,6 @@
 		</table>
 	</div>
 </div>
-#
 
 <style lang="scss">
 	.point-row {
