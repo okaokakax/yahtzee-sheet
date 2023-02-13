@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="/yahtzee-sheet/favicon.png" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta http-equiv="content-security-policy" content="">
+		<link href="/yahtzee-sheet/internal/immutable/assets/_page-870245e0.css" rel="stylesheet">
+		<link rel="modulepreload" href="/yahtzee-sheet/internal/immutable/start-49f52000.js">
+		<link rel="modulepreload" href="/yahtzee-sheet/internal/immutable/chunks/index-62fc4467.js">
+		<link rel="modulepreload" href="/yahtzee-sheet/internal/immutable/chunks/singletons-26d75ac5.js">
+		<link rel="modulepreload" href="/yahtzee-sheet/internal/immutable/chunks/index-e8229399.js">
+		<link rel="modulepreload" href="/yahtzee-sheet/internal/immutable/components/layout.svelte-bc31196f.js">
+		<link rel="modulepreload" href="/yahtzee-sheet/internal/immutable/modules/pages/_layout.js-fa3c4266.js">
+		<link rel="modulepreload" href="/yahtzee-sheet/internal/immutable/chunks/_layout-9a8b0c19.js">
+		<link rel="modulepreload" href="/yahtzee-sheet/internal/immutable/components/pages/_page.svelte-fa86c2f4.js">
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">
+
+
+<div class="container-fluid"><div class="row player-name-wrapper mt-4"><h3>サイコロを振り直し、結果を入力してください。</h3>
+		</div>
+	<div class="row dice-wrapper"><div class="d-grid dice-container" style="grid-template-columns: repeat(5, 1fr); column-gap: 2rem;"><select id="dice-1" class="dice"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select><select id="dice-2" class="dice"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select><select id="dice-3" class="dice"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select><select id="dice-4" class="dice"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select><select id="dice-5" class="dice"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></div></div>
+	<div class="row result-table mt-4"><table class="table table-bordered"><tbody><tr><th></th>
+					<th class="text-center" scope="col">点数</th>
+					
+					</tr>
+				<tr class="point-row"><th scope="row" class="text-bg-secondary"><span class="point-title">1の目</span>
+						<br>
+						<span class="point-description">該当する目の合計</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">5</a></td>
+					</tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">2の目</span>
+						<br>
+						<span class="point-description">該当する目の合計</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">0</a></td></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">3の目</span>
+						<br>
+						<span class="point-description">該当する目の合計</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">0</a></td></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">4の目</span>
+						<br>
+						<span class="point-description">該当する目の合計</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">0</a></td></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">5の目</span>
+						<br>
+						<span class="point-description">該当する目の合計</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">0</a></td></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">6の目</span>
+						<br>
+						<span class="point-description">該当する目の合計</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">0</a></td></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">ボーナス</span>
+						<br>
+						<span class="point-description">1~6の目の合計が63点以上の場合+35点</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler 'not-recorded point-cell-event-handler--not-clickable svelte-1q9llg6" href="#">ボーナスまであと63点
+							</a></td></tr>
+				<tr class="empty-row"></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">3カード</span>
+						<br>
+						<span class="point-description">出目の合計</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">5</a></td></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">4カード</span>
+						<br>
+						<span class="point-description">出目の合計</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">5</a></td></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">フルハウス</span>
+						<br>
+						<span class="point-description">25点</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">25</a></td></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">小さいストレート</span>
+						<br>
+						<span class="point-description">30点</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">30</a></td></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">大きいストレート</span>
+						<br>
+						<span class="point-description">40点</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">40</a></td></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">ヤッツィー</span>
+						<br>
+						<span class="point-description">50点</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">50</a></td></tr>
+				<tr class="point-row"><th scope="row"><span class="point-title">チャンス</span>
+						<br>
+						<span class="point-description">サイコロの目の合計</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler not-recorded svelte-1q9llg6" href="#">5</a></td></tr>
+				<tr class="point-row point-row--sum svelte-1q9llg6"><th scope="row"><span class="point-title">合計点</span></th>
+					<td class="point-cell svelte-1q9llg6"><a class="point-cell-event-handler point-cell-event-handler--not-clickable svelte-1q9llg6" href="#">0</a></td></tr></tbody></table></div></div>
+#
+
+
+		<script type="module" data-sveltekit-hydrate="1t0lzmw">
+			import { start } from "/yahtzee-sheet/internal/immutable/start-49f52000.js";
+
+			start({
+				assets: "/yahtzee-sheet",
+				env: {},
+				target: document.querySelector('[data-sveltekit-hydrate="1t0lzmw"]').parentNode,
+				version: "1676295906833",
+				hydrate: {
+					node_ids: [0, 2],
+					data: [null,null],
+					form: null,
+					error: null
+				}
+			});
+		</script>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
