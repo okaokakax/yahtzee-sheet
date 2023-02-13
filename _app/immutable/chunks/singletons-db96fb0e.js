@@ -128,7 +128,7 @@ function create_updated_store() {
   let timeout;
   async function check() {
     clearTimeout(timeout);
-    const res = await fetch(`${assets}/${"internal/version.json"}`, {
+    const res = await fetch(`${assets}/${"_app/version.json"}`, {
       headers: {
         pragma: "no-cache",
         "cache-control": "no-cache"
